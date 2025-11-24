@@ -1,0 +1,25 @@
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>U.S. Court of Appeals Federal Circuit - Oral Arguments</title>
+    <link>https://cafc.uscourts.gov</link>
+    <language>en-us</language>
+
+    <itunes:author>Sneha S</itunes:author>
+    <itunes:owner>
+      <itunes:name>Sneha S</itunes:name>
+      <itunes:email>snehaoarg@gmail.com</itunes:email>
+    </itunes:owner>
+    <itunes:image href="https://sneha-s2003.github.io/Federal-Circuit/oral.png" />
+    <itunes:explicit>no</itunes:explicit>
+    <item>
+      <title>Boberg v. Wilkie</title>
+      <enclosure url="https://sneha-s2003.github.io/Federal-Circuit/2019-1161.mp3"
+                 length="12345678"
+                 type="audio/mpeg" />
+      <guid isPermaLink="false">2019-1161</guid>
+      <pubDate>Wed, 01 May 2024 12:00:00 GMT</pubDate>
+      <description>Oral argument for 2019-1161.</description>
+      <itunes:explicit>no</itunes:explicit>
+    </item>
+  </channel>
+</rss>
