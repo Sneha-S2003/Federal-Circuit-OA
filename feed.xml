@@ -4,13 +4,20 @@
     <link>https://cafc.uscourts.gov</link>
     <language>en-us</language>
 
+    <description>
+      A daily-updated archive of oral arguments before the U.S. Court of Appeals for the Federal Circuit, made accessible in a podcast-friendly format. Each episode features the full official audio as released by the Court, curated for easier listening, research, and public access.
+    </description>
+
     <itunes:author>Sneha S</itunes:author>
+
     <itunes:owner>
       <itunes:name>Sneha S</itunes:name>
       <itunes:email>snehasridhar@gmail.com</itunes:email>
     </itunes:owner>
+
     <itunes:image href="https://sneha-s2003.github.io/Federal-Circuit/oral.png" />
     <itunes:explicit>no</itunes:explicit>
+
     <item>
       <title>Boberg v. Wilkie</title>
       <enclosure url="https://sneha-s2003.github.io/Federal-Circuit/2019-1161.mp3"
@@ -21,5 +28,6 @@
       <description>Oral argument for 2019-1161.</description>
       <itunes:explicit>no</itunes:explicit>
     </item>
+
   </channel>
 </rss>
