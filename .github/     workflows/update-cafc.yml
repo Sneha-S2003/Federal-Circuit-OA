@@ -1,1 +1,45 @@
+name: Update CAFC Oral Arguments Feed
+
+on:
+  schedule:
+    - cron: "0 13 * * 1-5"  # Mon–Fri at 13:00 UTC
+  workflow_dispatch:        # allow manual run from Actions tab
+
+jobs:
+  update-feed:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml
+
+      - name: Scrape CAFC and download new mp3s
+        run: python scripts/scrape_cafc.py
+
+      - name: Regenerate RSS feed
+        run: python scripts/generate_feed.py
+
+      - name: Commit and push changes (if any)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add feed.xml episodes/*.mp3
+            git commit -m "Auto-update CAFC oral arguments feed"
+            git push
+          else
+            echo "No changes to commit."
+          fi
 
