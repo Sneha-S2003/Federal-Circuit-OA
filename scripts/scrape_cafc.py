@@ -6,7 +6,7 @@ from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup
 
-BASE_URL = "https://www.cafc.uscourts.gov/home/oral-argument/listen-to-oral-arguments/"
+ARCHIVE_BASE = "https://www.cafc.uscourts.gov/category/oral-argument/page/{page}/"
 EPISODE_DIR = "episodes"
 SESSION = requests.Session()
 SESSION.headers["User-Agent"] = "CAFC-Oral-Arguments-Podcast-Bot/1.0"
@@ -15,50 +15,71 @@ os.makedirs(EPISODE_DIR, exist_ok=True)
 
 START_YEAR = 2020
 END_YEAR = 2025  # inclusive
+MAX_PAGES = 100  # the archive shows up to ~100 pages
 
 
-def get_rows():
-    resp = SESSION.get(BASE_URL, timeout=30)
+def parse_date(text: str):
+    """
+    Try to parse dates like 'November 10, 2025'.
+    Returns datetime or None.
+    """
+    text = text.strip()
+    try:
+        return datetime.strptime(text, "%B %d, %Y")
+    except ValueError:
+        return None
+
+
+def get_links_from_page(page: int):
+    """
+    Scrape a single archive page and return list of dicts:
+    { url, filename, docket, label, date }
+    """
+    url = ARCHIVE_BASE.format(page=page)
+    print(f"Fetching archive page {page}: {url}")
+    resp = SESSION.get(url, timeout=30)
+    if resp.status_code == 404:
+        print("Got 404, assuming no more pages.")
+        return None  # signal to stop
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
 
-    # The arguments are in a table under "Oral Argument Recordings"
-    # Each row looks like: [Argument Date] [Appeal Number] [Title (mp3)]
-    rows = []
-    for tr in soup.find_all("tr"):
-        tds = tr.find_all("td")
-        if len(tds) < 3:
-            continue
-
-        date_str = tds[0].get_text(strip=True)  # e.g. "11/10/2025"
-        link = tds[2].find("a", href=True)
-        if not link or ".mp3" not in link["href"].lower():
-            continue
-
-        try:
-            dt = datetime.strptime(date_str, "%m/%d/%Y")
-        except ValueError:
-            continue
-
-        rows.append((dt, link))
-
-    return rows
-
-
-def get_mp3_links_2020_2025():
-    rows = get_rows()
     links = []
-    for dt, link in rows:
-        if dt.year < START_YEAR or dt.year > END_YEAR:
+
+    # Each entry looks like:
+    #   <h3>2023-2331: Oliva v. DVA</h3>
+    #   <p>November 10, 2025</p>
+    #   <p>Oral argument audio posted: Oliva v. DVA (mp3) ...</p>
+    for h3 in soup.find_all("h3"):
+        title_text = h3.get_text(strip=True)
+        # look for the date in the next sibling <p>
+        date_dt = None
+        mp3_href = None
+
+        for sib in h3.next_siblings:
+            if getattr(sib, "name", None) == "p":
+                # try to parse a date line first
+                if not date_dt:
+                    dt = parse_date(sib.get_text(" ", strip=True))
+                    if dt:
+                        date_dt = dt
+                        continue
+                # look for mp3 link
+                a = sib.find("a", href=True)
+                if a and ".mp3" in a["href"].lower():
+                    mp3_href = a["href"]
+                    break
+
+        if not mp3_href or not date_dt:
             continue
 
-        href = link["href"]
-        full_url = urljoin(BASE_URL, href)
-        filename = full_url.split("?")[0].split("/")[-1]
-        label = link.get_text(strip=True)
+        if date_dt.year < START_YEAR or date_dt.year > END_YEAR:
+            continue
 
-        # try docket from filename or label
-        m = re.search(r"(\d{4}-\d{3,5})", filename + " " + label)
+        full_url = urljoin(url, mp3_href)
+        filename = full_url.split("?")[0].split("/")[-1]
+
+        m = re.search(r"(\d{4}-\d{3,5})", title_text)
         docket = m.group(1) if m else filename.replace(".mp3", "")
 
         links.append(
@@ -66,12 +87,32 @@ def get_mp3_links_2020_2025():
                 "url": full_url,
                 "filename": filename,
                 "docket": docket,
-                "label": label,
-                "date": dt,
+                "label": title_text,
+                "date": date_dt,
             }
         )
-    print(f"Found {len(links)} mp3s between {START_YEAR} and {END_YEAR}.")
+
+    print(f"Page {page}: found {len(links)} matches in {START_YEAR}-{END_YEAR}.")
     return links
+
+
+def get_all_links_2020_2025():
+    all_links = []
+    seen = set()
+
+    for page in range(1, MAX_PAGES + 1):
+        page_links = get_links_from_page(page)
+        if page_links is None:
+            break  # hit a 404, no more pages
+
+        for item in page_links:
+            if item["filename"] in seen:
+                continue
+            seen.add(item["filename"])
+            all_links.append(item)
+
+    print(f"Total unique mp3s between {START_YEAR}-{END_YEAR}: {len(all_links)}")
+    return all_links
 
 
 def download_if_needed(item):
@@ -96,7 +137,7 @@ def download_if_needed(item):
 
 
 def main():
-    links = get_mp3_links_2020_2025()
+    links = get_all_links_2020_2025()
     for item in links:
         download_if_needed(item)
 
