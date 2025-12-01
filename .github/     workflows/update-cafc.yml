@@ -25,7 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4 lxml
 
-      - name: Scrape CAFC and download new mp3s
+            - name: Scrape CAFC and download new mp3s
         run: python scripts/scrape_cafc.py
 
       - name: Regenerate RSS feed
@@ -42,4 +42,5 @@ jobs:
           else
             echo "No changes to commit."
           fi
+
 
