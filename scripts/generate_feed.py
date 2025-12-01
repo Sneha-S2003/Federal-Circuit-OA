@@ -24,16 +24,15 @@ def extract_docket_and_date(filename: str):
         month, day, year = date_match.groups()
         dt = datetime(int(year), int(month), int(day))
     else:
-        # Fall back to "now" if no date in filename
-        dt = datetime.utcnow()
+        # Fallback: use file mtime
+        path = os.path.join(EPISODE_DIR, filename)
+        mtime = os.path.getmtime(path)
+        dt = datetime.utcfromtimestamp(mtime)
 
     return docket, dt
 
 
 def make_item(filename: str) -> str:
-    """
-    Build an <item> xml string for one mp3 file in episodes/.
-    """
     file_path = os.path.join(EPISODE_DIR, filename)
     size = os.path.getsize(file_path)
     docket, dt = extract_docket_and_date(filename)
@@ -44,7 +43,7 @@ def make_item(filename: str) -> str:
 
     enclosure_url = f"{PUBLIC_BASE}/episodes/{filename}"
 
-    item_xml = f"""
+    return f"""
     <item>
       <title>{title}</title>
       <enclosure url="{enclosure_url}"
@@ -56,14 +55,13 @@ def make_item(filename: str) -> str:
       <itunes:explicit>no</itunes:explicit>
     </item>
 """
-    return item_xml
 
 
 def generate_feed():
-    # Collect items in a deterministic order (e.g. sorted by filename)
+    os.makedirs(EPISODE_DIR, exist_ok=True)
+
     files = [
-        f
-        for f in os.listdir(EPISODE_DIR)
+        f for f in os.listdir(EPISODE_DIR)
         if f.lower().endswith(".mp3")
     ]
     files.sort()
@@ -76,7 +74,7 @@ def generate_feed():
     <link>https://cafc.uscourts.gov</link>
     <language>en-us</language>
     <description>
-      A growing archive of oral arguments before the U.S. Court of Appeals for the Federal Circuit, made accessible in a podcast-friendly format. Each episode features the official courtroom audio as released by the Court.
+      A daily-updated archive of oral arguments before the U.S. Court of Appeals for the Federal Circuit, made accessible in a podcast-friendly format. Each episode features the full official audio as released by the Court, curated for easier listening, research, and public access.
     </description>
 
     <itunes:author>Sneha S</itunes:author>
@@ -93,10 +91,9 @@ def generate_feed():
 
     with open("feed.xml", "w", encoding="utf-8") as f:
         f.write(channel_xml.strip() + "\n")
-    print("Wrote feed.xml with", len(files), "episodes.")
+
+    print(f"Wrote feed.xml with {len(files)} episodes.")
 
 
 if __name__ == "__main__":
-    os.makedirs(EPISODE_DIR, exist_ok=True)
     generate_feed()
-
