@@ -1,33 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
-    <title>U.S. Court of Appeals Federal Circuit - Oral Arguments</title>
-    <link>https://cafc.uscourts.gov</link>
+    <title>CAFC Oral Arguments – 2025 Archive</title>
+    <link>https://www.cafc.uscourts.gov/home/oral-argument/listen-to-oral-arguments/</link>
     <language>en-us</language>
-
     <description>
-      A daily-updated archive of oral arguments before the U.S. Court of Appeals for the Federal Circuit, made accessible in a podcast-friendly format. Each episode features the full official audio as released by the Court, curated for easier listening, research, and public access.
+      Oral argument audio from the U.S. Court of Appeals for the Federal Circuit for the year 2025. All files are direct links to the Court’s MP3 recordings.
     </description>
-
     <itunes:author>Sneha S</itunes:author>
-
     <itunes:owner>
       <itunes:name>Sneha S</itunes:name>
       <itunes:email>snehasridhar@gmail.com</itunes:email>
     </itunes:owner>
-
-    <itunes:image href="https://sneha-s2003.github.io/Federal-Circuit/oral.png" />
+    <itunes:image href="https://sneha-s2003.github.io/Federal-Circuit-OA/oral.png"/>
     <itunes:explicit>no</itunes:explicit>
 
+    <!-- DECEMBER 2025 -->
     <item>
-      <title>Boberg v. Wilkie</title>
-      <enclosure url="https://sneha-s2003.github.io/Federal-Circuit/2019-1161.mp3"
-                 length="12345678"
-                 type="audio/mpeg" />
-      <guid isPermaLink="false">2019-1161</guid>
-      <pubDate>Wed, 01 May 2024 12:00:00 GMT</pubDate>
-      <description>Oral argument for 2019-1161.</description>
+      <title>2024-1256 – Haggart v. United States</title>
+      <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/24-1256_12022025.mp3"
+                 length="0"
+                 type="audio/mpeg"/>
+      <guid isPermaLink="false">24-1256-12022025</guid>
+      <pubDate>Tue, 02 Dec 2025 13:26:00 GMT</pubDate>
+      <description>Oral argument in Haggart v. US, appeal 24-1256 (Dec 2, 2025).</description>
       <itunes:explicit>no</itunes:explicit>
     </item>
 
+    <!-- NOVEMBER 2025 -->
+    <item>
+      <title>2023-2331 – Oliva v. Department of Veterans Affairs</title>
+      <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/23-2331_11102025.mp3"
+                 length="0"
+                 type="audio/mpeg"/>
+      <guid isPermaLink="false">23-2331_11102025</guid>
+      <pubDate>Mon, 10 Nov 2025 12:00:00 GMT</pubDate>
+      <description>Oral argument in Oliva v. DVA, appeal 23-2331 (Nov 10, 2025).</description>
+      <itunes:explicit>no</itunes:explicit>
+    </item>
+
+    <item>
+      <title>2024-1755 – ASG Solutions Corp. v. United States</title>
+      <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/24-1755_11052025.mp3"
+                 length="0"
+                 type="audio/mpeg"/>
+      <guid isPermaLink="false">24-1755_11052025</guid>
+      <pubDate>Wed, 05 Nov 2025 16:48:00 GMT</pubDate>
+      <description>Oral argument in ASG Solutions Corp. v. US, appeal 24-1755 (Nov 5, 2025).</description>
+      <itunes:explicit>no</itunes:explicit>
+    </item>
+
+    <item>
+      <title>2025-127 – In Re US</title>
+      <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/25-127_11042025.mp3"
+                 length="0"
+                 type="audio/mpeg"/>
+      <guid isPermaLink="false">25-127_11042025</guid>
+      <pubDate>Tue, 04 Nov 2025 14:54:00 GMT</pubDate>
+      <description>Oral argument in In Re US, appeal 25-127 (Nov 4, 2025). :contentReference[oaicite:0]{index=0}</description>
+      <itunes:explicit>no</itunes:explicit>
+    </item>
+
+    <!-- OCTOBER/NOVEMBER OVERLAP -->
+    <item>
+      <title>2024-1236 – Federal Express Corp. v. Qualcomm Inc.</title>
+      <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/24-1236_11042025.mp3"
+                 length="0"
+                 type="audio/mpeg"/>
+      <guid isPermaLink="false">24-1236_11042025</guid>
+      <pubDate>Tue, 04 Nov 2025 10:30:08 GMT</pubDate>
+      <description>Oral argument in Federal Express Corp. v. Qualcomm Inc., appeal 24-1236 (Nov 4, 2025). :contentReference[oaicite:1]{index=1}</description>
+      <itunes:explicit>no</itunes:explicit>
+    </item>
+
+    <!-- ADDITIONAL 2025 CASES (selected; repeat pattern as needed) -->
+
   </channel>
 </rss>
+
