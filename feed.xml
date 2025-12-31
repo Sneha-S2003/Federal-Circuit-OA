@@ -74,6 +74,77 @@
     </item>
 
     <!-- ADDITIONAL 2025 CASES (selected; repeat pattern as needed) -->
+    <item>
+  <title>MemoryWeb, LLC v. Samsung Electronics Co., Ltd.</title>
+  <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/24-1315_11032025.mp3"
+             length="0"
+             type="audio/mpeg"/>
+  <guid isPermaLink="false">24-1315_11032025</guid>
+  <pubDate>Mon, 03 Nov 2025 12:00:00 GMT</pubDate>
+  <description>Oral argument audio, appeal 24-1315 (Nov 3, 2025).</description>
+  <itunes:explicit>no</itunes:explicit>
+</item>
+
+<item>
+  <title>Ethanol Boosting Systems, LLC v. Ford Motor Company</title>
+  <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/24-1381_11032025.mp3"
+             length="0"
+             type="audio/mpeg"/>
+  <guid isPermaLink="false">24-1381_11032025</guid>
+  <pubDate>Mon, 03 Nov 2025 12:00:00 GMT</pubDate>
+  <description>Oral argument audio, appeal 24-1381 (Nov 3, 2025).</description>
+  <itunes:explicit>no</itunes:explicit>
+</item>
+<item>
+  <title>Young v. Collins</title>
+  <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/24-1456_11032025.mp3"
+             length="0"
+             type="audio/mpeg"/>
+  <guid isPermaLink="false">24-1456_11032025</guid>
+  <pubDate>Mon, 03 Nov 2025 12:00:00 GMT</pubDate>
+  <description>Oral argument audio, appeal 24-1456 (Nov 3, 2025).</description>
+  <itunes:explicit>no</itunes:explicit>
+</item>
+
+<item>
+  <title>Soto v. DVA</title>
+  <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/24-1386_11032025.mp3"
+             length="0"
+             type="audio/mpeg"/>
+  <guid isPermaLink="false">24-1386_11032025</guid>
+  <pubDate>Mon, 03 Nov 2025 12:00
+  <item>
+    
+  <title>Apple Inc. v. MemoryWeb, LLC </title>
+  <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/24-1237_11042025.mp3"
+             length="0"
+             type="audio/mpeg"/>
+  <guid isPermaLink="false">24-1237_11042025</guid>
+  <pubDate>Tue, 04 Nov 2025 12:00:00 GMT</pubDate>
+  <description>Oral argument audio, appeal 24-1237 (Nov 4, 2025).</description>
+  <itunes:explicit>no</itunes:explicit>
+</item>
+
+<item>
+  <title>Federal Express Corporation v. Qualcomm Incorporated</title>
+  <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/23-2361_11032025.mp3"
+             length="0"
+             type="audio/mpeg"/>
+  <guid isPermaLink="false">23-2361_11032025</guid>
+  <pubDate>Mon, 03 Nov 2025 12:00:00 GMT</pubDate>
+  <description>Oral argument audio, appeal 23-2361 (Nov 3, 2025).</description>
+  <itunes:explicit>no</itunes:explicit>
+</item>
+<item>
+  <title>2024-1298 – Oral Argument</title>
+  <enclosure url="https://www.cafc.uscourts.gov/oral-arguments/24-1298_12122025.mp3"
+             length="0"
+             type="audio/mpeg"/>
+  <guid isPermaLink="false">24-1298_12122025</guid>
+  <pubDate>Fri, 12 Dec 2025 12:00:00 GMT</pubDate>
+  <description>Oral argument audio, appeal 24-1298 (Dec 12, 2025).</description>
+  <itunes:explicit>no</itunes:explicit>
+</item>
 
   </channel>
 </rss>
